@@ -20,6 +20,6 @@ while principal > 0:
     if extra_payment_start_month <= months <= extra_payment_end_month:
         principal = principal - extra_payment
         total_paid = total_paid + extra_payment
-    print(f'{months}\t{round(total_paid, 2)}\t{round(principal, 2)}')
+    print(f'{months}\t{total_paid:0.2f}\t{principal:10.2f}')
 
-print(f'{round(total_paid, 2)} over {months} months')
+print(f'{total_paid:0.2f} over {months} months')
