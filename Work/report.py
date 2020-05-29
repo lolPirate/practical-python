@@ -4,6 +4,7 @@
 import csv
 from pprint import pprint
 
+
 def read_portfolio(file_name):
     """
     Opens portfolio file, reads it and returns a list.
@@ -23,6 +24,7 @@ def read_portfolio(file_name):
             )
     return portfolio
 
+
 def read_prices(file_name):
     """
     Reads prices from a csv file and returns a dictionary
@@ -34,6 +36,7 @@ def read_prices(file_name):
             if line:
                 prices[line[0]] = float(line[1])
     return prices
+
 
 portfolio = read_portfolio(r'Work\Data\portfolio.csv')
 current_prices = read_prices(r'Work\Data\prices.csv')
@@ -47,4 +50,5 @@ for i in portfolio:
 
 print(f'Original Value : {portfolio_price:0.2f}')
 print(f'Current Value : {current_price:0.2f}')
-print(f'Gain/Loss : {(current_price - portfolio_price)*100/portfolio_price:0.2f}%')
+print(
+    f'Gain/Loss : {(current_price - portfolio_price)*100/portfolio_price:0.2f}%')
