@@ -1,6 +1,7 @@
 # pcost.py
 #
 # Exercise 1.27
+import sys
 
 def portfolio_cost(file_name):
     """
@@ -14,7 +15,12 @@ def portfolio_cost(file_name):
             total_cost = total_cost + int(shares) * float(price)
     return total_cost
 
-file = r'Work\Data\portfolio.csv'
+
+if len(sys.argv) == 2:
+    file = sys.argv[1]
+else:
+    file = r'Work\Data\portfolio.csv'
+
 total_cost = portfolio_cost(file)
 print(f'Total cost {total_cost:0.2f}')
 
