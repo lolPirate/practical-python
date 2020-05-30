@@ -2,6 +2,7 @@
 #
 # Exercise 1.27
 import sys
+import csv
 
 def portfolio_cost(file_name):
     """
@@ -9,10 +10,16 @@ def portfolio_cost(file_name):
     """
     total_cost = 0.0
     with open(file_name, 'rt') as f:
-        next(f)
-        for line in f:
-            _, shares, price = line.strip().split(',')
-            total_cost = total_cost + int(shares) * float(price)
+        f = csv.reader(f)
+        headers = next(f)
+        for indx, line in enumerate(f, start=1):
+            record = dict(zip(headers, line))
+            try:
+                shares = int(record['shares'])
+                price = float(record['price'])
+                total_cost = total_cost + shares * price
+            except ValueError:
+                print(f'Row {indx}: Bad Row: {line}')
     return total_cost
 
 
@@ -23,4 +30,3 @@ else:
 
 total_cost = portfolio_cost(file)
 print(f'Total cost {total_cost:0.2f}')
-

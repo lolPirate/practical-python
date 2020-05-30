@@ -12,14 +12,14 @@ def read_portfolio(file_name):
     portfolio = []
     with open(file_name, 'rt') as f:
         f = csv.reader(f)
-        next(f)
+        headers = next(f)
         for line in f:
-            name, shares, price = line
+            record = dict(zip(headers, line))
             portfolio.append(
                 {
-                    'name': name,
-                    'shares': int(shares),
-                    'price': float(price),
+                    'name': record['name'],
+                    'shares': int(record['shares']),
+                    'price': float(record['price']),
                 }
             )
     return portfolio
