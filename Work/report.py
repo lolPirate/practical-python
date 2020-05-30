@@ -65,11 +65,7 @@ def retire(portfolio, current_prices):
         f'Gain/Loss : {(current_price - portfolio_price)*100/portfolio_price:0.2f}%')
 
 
-def print_report():
-    portfolio = read_portfolio(r'Work\Data\portfolio.csv')
-    current_prices = read_prices(r'Work\Data\prices.csv')
-
-    report = make_report(portfolio, current_prices)
+def print_report(report):
 
     headers = ('Name', 'Shares', 'Price', 'Change')
     print(
@@ -84,4 +80,20 @@ def print_report():
         print(f'{name:>10s} {shares:>10n} {current_price:>10s} {change:>10.2f}')
 
 
-print_report()
+def portfolio_report(portfolio, prices):
+    portfolio = read_portfolio(portfolio)
+    prices = read_prices(prices)
+    report = make_report(portfolio, prices)
+    print_report(report)
+
+
+if __name__ == '__main__':
+    portfolio = r'Work\Data\portfolio.csv'
+    prices = r'Work\Data\prices.csv'
+    portfolio_report(portfolio, prices)
+
+files = [r'Work\Data\portfolio.csv', r'Work\Data\portfolio2.csv']
+for f in files:        
+    print(f'{f:-^43s}') 
+    portfolio_report(f, r'Work\Data\prices.csv')
+    print()
